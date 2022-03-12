@@ -94,4 +94,20 @@ public class GameManager : MonoBehaviour
         CancelInvoke("Stopper");
         InvokeRepeating("Stopper", freeze, 1);
     }
+
+    public void AddKey(KeyColor keyColor)
+    {
+        switch (keyColor)
+        {
+            case KeyColor.Red:
+                redKey++;
+                break;
+            case KeyColor.Green:
+                greenKey++;
+                break;
+            case KeyColor.Gold:
+                goldKey++;
+                break;
+        }
+    }
 }

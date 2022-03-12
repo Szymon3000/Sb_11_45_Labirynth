@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Add points
-public class Crystal : PickUp
+public class PointAdder : PickUp
 {
     public int points = 5;
 
