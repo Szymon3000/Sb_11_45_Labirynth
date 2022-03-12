@@ -9,7 +9,11 @@ public class GameManager : MonoBehaviour
     bool gamePaused = false, 
         endGame = false, 
         win = false;
-    
+    public int points = 0;
+    public int redKey = 0;
+    public int greenKey = 0;
+    public int goldKey = 0;
+
     void Start()
     {
         if(gameManager == null)
@@ -73,5 +77,33 @@ public class GameManager : MonoBehaviour
             Debug.Log("You win! Reload?");
         else
             Debug.Log("You lose! Reload?");
+    }
+    public void AddPoints(int point)
+    {
+        points += point;
+    }
+    public void AddTime(int time)
+    {
+        timeToEnd += time;
+    }
+    public void FreezeTime(int freeze)
+    {
+        CancelInvoke("Stopper");
+        InvokeRepeating("Stopper", freeze, 1);
+    }
+    public void AddKey(KeyColor keyColor)
+    {
+        switch(keyColor)
+        {
+            case KeyColor.Red:
+                redKey++;
+                break;
+            case KeyColor.Green:
+                greenKey++;
+                break;
+            case KeyColor.Gold:
+                goldKey++;
+                break;
+        }
     }
 }
