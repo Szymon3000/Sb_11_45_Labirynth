@@ -936,6 +936,7 @@ Received Import Request.
 Start importing Assets/Materials/Key Material.mat using Guid(2b923763a3286b14a99e6609d7e74065) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '85c69ea97b5807fce8d75a027ddd1a7d') in 0.019869 seconds 
   Import took 0.023256 seconds .
 
+
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
@@ -1104,6 +1105,14 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 341.016551 seconds.
+  path: ProjectSettings/TagManager.asset
+  artifactKey: Guid(00000000000000003000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing ProjectSettings/TagManager.asset using Guid(00000000000000003000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16e01c624254061a3563196e14032489') in 0.017513 seconds 
+  Import took 0.019819 seconds .
+
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
@@ -1702,7 +1711,7 @@ Domain Reload Profiling:
 	ReloadAssembly (1060ms)
 		BeginReloadAssembly (127ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (4ms)
+			DisableScriptedObjects (6ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (31ms)
