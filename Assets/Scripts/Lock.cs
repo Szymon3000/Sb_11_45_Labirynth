@@ -13,7 +13,14 @@ public class Lock : MonoBehaviour
     {
         key = GetComponent<Animator>();
     }
-    private void UseKey()
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.E)&&iCanOpen==true&&locked==false)
+        {
+            key.SetBool("UseKey", CheckTheKey());
+        }
+    }
+    public void UseKey()
     {
         door.CloseOpen();
     }
@@ -21,16 +28,19 @@ public class Lock : MonoBehaviour
     {
         if(GameManager.gameManager.redKey>0 && myKeyColor==KeyColor.Red)
         {
+            locked = true;
             GameManager.gameManager.redKey--;
             return true;
         }
         else if (GameManager.gameManager.greenKey > 0 && myKeyColor == KeyColor.Green)
         {
+            locked = true;
             GameManager.gameManager.greenKey--;
             return true;
         }
         else if (GameManager.gameManager.goldKey > 0 && myKeyColor == KeyColor.Gold)
         {
+            locked = true;
             GameManager.gameManager.goldKey--;
             return true;
         }
