@@ -7,6 +7,9 @@ public class LevelGenerator : MonoBehaviour
     public Texture2D map;
     public ColorToPrefab[] colorMappings;
     public float offset = 5f;
+    public Material material1;
+    public Material material2;
+
     void GenerateTile(int x, int z)
     {
         Color pixelColor = map.GetPixel(x, z);
@@ -32,6 +35,34 @@ public class LevelGenerator : MonoBehaviour
                 GenerateTile(x, z);
             }
             
+        }
+        ColorTheChildren();
+    }
+    private void ColorTheChildren()
+    {
+        foreach(Transform child in transform)
+        {
+            if (child.tag == "Wall")
+            {
+                if (Random.Range(1, 100) % 3 == 0)
+                {
+                    child.gameObject.GetComponent<Renderer>().material = material1;
+                }
+                else
+                {
+                    child.gameObject.GetComponent<Renderer>().material = material2;
+                }
+            }
+            if (child.childCount > 0)
+            {
+                foreach (Transform grandchid in child.transform)
+                {
+                    if(grandchid.tag=="Wall")
+                    {
+                        grandchid.gameObject.GetComponent<Renderer>().material = child.gameObject.GetComponent<Renderer>().material;
+                    }
+                }
+            }
         }
     }
 }
