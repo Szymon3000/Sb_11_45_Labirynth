@@ -924,6 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534c0c9fbf4799d41ae6eab0a524bdf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickedClip: {fileID: 8300000, guid: f049dad4486bc4447850a56a12cb3aab, type: 3}
   addTime: 1
   time: 5
 --- !u!1 &3772200279963647550

@@ -190,4 +190,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cd18e1ba73581641b2a0da03c1ab815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickedClip: {fileID: 8300000, guid: 9460a26f83a88474eba3e8ace366521a, type: 3}
   keyColor: 1

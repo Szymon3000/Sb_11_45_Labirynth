@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3b354e86e78e54189005cd6722af33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickedClip: {fileID: 8300000, guid: f049dad4486bc4447850a56a12cb3aab, type: 3}
   freezeTime: 10
 --- !u!1 &5097290492092342517
 GameObject:

@@ -11,6 +11,7 @@ public class Clock : PickUps
         if(addTime)
         {
             GameManager.gameManager.AddTime(time);
+            GameManager.gameManager.PlayClip(pickedClip);
         }
         else
         {

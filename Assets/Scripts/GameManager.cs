@@ -6,23 +6,32 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
     [SerializeField] int timeToEnd;
-    bool gamePaused = false, 
-        endGame = false, 
+    bool gamePaused = false,
+        endGame = false,
         win = false;
     public int points = 0;
     public int redKey = 0;
     public int greenKey = 0;
     public int goldKey = 0;
-
+    public AudioSource audioSource;
+    public AudioClip pauseGame;
+    public AudioClip resumeGame;
+    public AudioClip winClip;
+    public AudioClip loseClip;
+    musicScript musicManager;
+    bool isLessTimeOn = false;
     void Start()
     {
-        if(gameManager == null)
+        if (gameManager == null)
             gameManager = this;
 
         if (timeToEnd <= 0)
             timeToEnd = 100;
 
         InvokeRepeating("Stopper", 2, 1);
+        audioSource = GetComponent<AudioSource>();
+        musicManager = GetComponentInChildren<musicScript>();
+        PlayClip(resumeGame);
     }
 
     void Update()
@@ -34,8 +43,17 @@ public class GameManager : MonoBehaviour
     {
         timeToEnd--;
         Debug.Log($"Time: {timeToEnd} s");
-
-        if(timeToEnd <= 0)
+        if(timeToEnd<20&&!isLessTimeOn)
+        {
+            isLessTimeOn = true;
+            LessTimeOn();
+        }
+        if(timeToEnd>20&&isLessTimeOn)
+        {
+            isLessTimeOn = false;
+            LessTimeOff();
+        }
+        if (timeToEnd <= 0)
         {
             timeToEnd = 0;
             endGame = true;
@@ -47,6 +65,8 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        PlayClip(pauseGame);
+        musicManager.OnGamePaused();
         Debug.Log("Game Paused");
         Time.timeScale = 0f;
         gamePaused = true;
@@ -55,13 +75,16 @@ public class GameManager : MonoBehaviour
     public void ResumeGame()
     {
         Debug.Log("Game Resumed");
+        PlayClip(resumeGame);
         Time.timeScale = 1f;
+        musicManager.OnGameResumed();
         gamePaused = false;
+
     }
-    
+
     void PauseCheck()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (gamePaused)
                 ResumeGame();
@@ -73,10 +96,17 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         CancelInvoke("Stopper");
+        musicManager.OnGamePaused();
         if (win)
+        {
             Debug.Log("You win! Reload?");
+            PlayClip(winClip);
+        }
         else
+        {
             Debug.Log("You lose! Reload?");
+            PlayClip(loseClip);
+        }
     }
     public void AddPoints(int point)
     {
@@ -93,7 +123,7 @@ public class GameManager : MonoBehaviour
     }
     public void AddKey(KeyColor keyColor)
     {
-        switch(keyColor)
+        switch (keyColor)
         {
             case KeyColor.Red:
                 redKey++;
@@ -105,5 +135,18 @@ public class GameManager : MonoBehaviour
                 goldKey++;
                 break;
         }
+    }
+    public void PlayClip(AudioClip audioclip)
+    {
+        audioSource.clip = audioclip;
+        audioSource.Play();
+    }
+    public void LessTimeOn()
+    {
+        musicManager.Pitch(1.5f);
+    }
+    public void LessTimeOff()
+    {
+        musicManager.Pitch(1.5f);
     }
 }

@@ -8,20 +8,24 @@ public class TrapHelpScript : MonoBehaviour
     public Transform trap;
     public Transform goingUpPosition;
     public GameObject floor;
+    public bool activated=false;
     void Start()
     {
         
     }
     void Update()
     {
-        
+        if(activated)
+        {
+            trap.position = Vector3.MoveTowards(trap.position, goingUpPosition.position, Time.deltaTime * speed);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("You entered trap help collider!");
         GetComponent<Collider>().enabled = false;
         //floor.GetComponent<Collider>().enabled = false;
-        Destroy(floor.gameObject); 
-        trap.position = Vector3.MoveTowards(trap.position, goingUpPosition.position, Time.deltaTime * speed);
+        Destroy(floor.gameObject);
+        activated = true;
     }
 }
